@@ -20,8 +20,8 @@ async function index(req, res) {
 
     let apiResponse = await api
       .get(queryString)
-      .then((res) => {
-        logger.storeLogger({
+      .then(async (res) => {
+        await logger.storeLogger({
           method: req.method,
           path: req.baseUrl,
           parameters: req.query,
@@ -29,8 +29,8 @@ async function index(req, res) {
         })
         return res
       })
-      .catch((err) => {
-        logger.storeLogger({
+      .catch(async (err) => {
+        await logger.storeLogger({
           method: req.method,
           path: req.baseUrl,
           parameters: req.query,
